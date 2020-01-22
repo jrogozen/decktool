@@ -11,8 +11,8 @@ Squib::Deck.new(layout: File.absolute_path('ally.yml', __dir__)) do
 
   # puts doc
   svg layout: 'vector', data: data
-  text layout: 'title', str: '<span variant="normal">Black Cat</span>'
-  text layout: 'subtitle', str: 'felicia hardy'
+  text layout: 'title', str: 'black cat'.upcase
+  text layout: 'subtitle', str: 'felicia hardy'.upcase
   text layout: 'cost_shadow', str: 3
   extents = text layout: 'cost', str: 3
   text layout: 'type', str: 'ally'.upcase, x: (145 - extents[0][:width]) / 2
@@ -24,7 +24,7 @@ Squib::Deck.new(layout: File.absolute_path('ally.yml', __dir__)) do
   text layout: 'atk_value', str: 1
   text layout: 'health_shadow', str: 2
   text layout: 'health', str: 2
-  text layout: 'attributes', str: 'hero for hire.'.upcase!
+  text layout: 'attributes', str: 'hero for hire.'.upcase
   text layout: 'effect', str: '<b>Forced Response:</b> After you play Black Cat, discard the top 2 cards of your deck. Add each card with a printed resource discared this way to your hand.'
   text layout: 'quote', str: %q{"I'm not a hero. I'm a thief."}
   text layout: 'set', str: %q{<span>spider-man</span>  <span size="smaller">1/15</span>}, width: 280

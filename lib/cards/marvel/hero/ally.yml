@@ -7,7 +7,7 @@ vector:
   y: 0
 title:
   markup: true
-  font: Iron & Brine, 12
+  font: Exo 2, bold 9
   color: black
   x: 173
   y: 45
@@ -16,7 +16,7 @@ title:
   height: 40
   width: 514
 subtitle:
-  font: Iron & Brine, 5
+  font: Exo 2, 4
   color: black
   x: 173
   y: 90
@@ -25,7 +25,7 @@ subtitle:
   height: 20
   width: 514
 cost:
-  font: Trekker, 22
+  font: Elektra Medium Pro, bold italic 24
   color: white
   stroke_color: black
   stroke_width: 3
@@ -34,7 +34,7 @@ cost:
   align: center
   width: 145
 cost_shadow:
-  font: Trekker, 22
+  font: Elektra Medium Pro, bold italic 22
   color: black
   x: -3,
   y: 34,
@@ -57,7 +57,7 @@ atk:
   extends: stat_description
   y: 515
 stat_value:
-  font: Trekker, 17
+  font: Avenir Next, italic heavy 18
   align: center
   width: 100
   x: 40
@@ -72,16 +72,16 @@ stat_value_shadow:
   x: 37
 thw_value:
   extends: stat_value_base
-  y: 230
+  y: 215
 thw_value_shadow:
   extends: stat_value_shadow
-  y: 233
+  y: 220
 atk_value:
   extends: stat_value_base
-  y: 445
+  y: 428
 atk_value_shadow:
   extends: stat_value_shadow
-  y: 448
+  y: 433
 health:
   extends: cost
   x: 574
@@ -95,24 +95,23 @@ health_shadow:
   height: 80
   width: 85
 attributes:
-  font: Comic Book, 5
+  font: Komika Title, 6
   color: black
   align: center
   x: 80
-  y: 645
+  y: 640
   height: 20
   width: 600
 effect:
-  font: Barlow, 8.3
+  font: Avenir, book 7.7
   markup: true
   x: 80
   align: left
-  y: 690
+  y: 685
   width: 600
-  height: 225
+  height: 230
 quote:
-  font_size: 6
-  font: arial italic
+  font: Komika Text, italic 6
   align: left
   width: 600
   x: 80
