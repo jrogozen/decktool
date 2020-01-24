@@ -6,5 +6,8 @@
 		{
 			"path": "card_maker"
 		}
-	]
+	],
+  "settings": {
+    "editor.tabSize": 2,
+  }
 }

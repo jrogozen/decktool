@@ -1,13 +1,13 @@
 Squib::Deck.new(layout: File.absolute_path('ally.yml', __dir__)) do
-  png  layout: 'background_image', file: File.absolute_path('blackcat_background_image.png', __dir__)
+#   png  layout: 'background_image', file: File.absolute_path('blackcat_background_image.png', __dir__)
 
   # doc = Nokogiri::XML(File.absolute_path('ally.svg', __dir__))
 
   data = File.read(File.absolute_path('ally_inline.svg', __dir__))
     .gsub('${secondary_color}', '#000')
-    .gsub('${primary_color}', '#000')
+    .gsub('${primary_color}', '#ff0000')
     .gsub('${primary_color_texture}', '#000')
-    .gsub('${tertiary_color}', '#000')
+    .gsub('${tertiary_color}', '#d3d3d3')
 
   # puts doc
   svg layout: 'vector', data: data
