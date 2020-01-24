@@ -4,6 +4,12 @@ module.exports = {
     connection: {
       filename: './dev.sqlite3',
     },
+    migrations: {
+      directory: `${__dirname}/database/migrations`,
+    },
+    seeds: {
+      directory: `${__dirname}/database/seeds`,
+    },
   },
 
   production: {
@@ -19,6 +25,10 @@ module.exports = {
     },
     migrations: {
       tableName: 'knex_migrations',
+      directory: `${__dirname}/database/migrations`,
+    },
+    seeds: {
+      directory: `${__dirname}/database/seeds`,
     },
   },
 

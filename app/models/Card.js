@@ -11,6 +11,7 @@ class Card extends Model {
       author,
       backgroundImageURL,
       cost,
+      createdAt,
       deckName,
       deckURL,
       def,
@@ -37,6 +38,8 @@ class Card extends Model {
       thwConsequence,
       title,
       type,
+      updatedAt,
+      views,
     } = args;
 
     this.title = Card.string(title);
@@ -84,9 +87,9 @@ class Card extends Model {
     };
 
     this.output = {
-      svg: Card.string(svg).split(','),
-      thumbnail: Card.string(thumbnail).split(','),
-      png: Card.string(png).split(','),
+      svg: Card.string(svg),
+      thumbnail: Card.string(thumbnail),
+      png: Card.string(png),
     };
 
     this.meta = {
@@ -96,6 +99,9 @@ class Card extends Model {
       deckName: Card.string(deckName),
       official: Card.boolean(official),
       type: Card.string(type),
+      views: Card.number(views),
+      createdAt: this.createdAt.string(createdAt),
+      updatedAt: this.updatedAt.string(updatedAt),
     };
   }
 
