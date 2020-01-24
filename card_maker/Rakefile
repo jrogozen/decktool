@@ -3,5 +3,5 @@ require 'squib'
 desc 'build the hero deck'
 task :hero do
   puts "building hero deck"
-  load 'lib/cards/marvel/hero/ally.rb'
+  load 'lib/marvel_champions/ally/ally.rb'
 end

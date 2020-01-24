@@ -1,6 +1,6 @@
 group :hero do
   guard 'rake', task: :hero do
-    watch %r{lib/cards/marvel/hero/ally.rb}
+    watch %r{lib/marvel_champions/*}
     watch %r{img/.*}
     watch %r{.*\.yml}
   end

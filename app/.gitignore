@@ -1,1 +1,5 @@
 node_modules
+tools/env
+tools/accounts
+logs
+dev.sqlite3

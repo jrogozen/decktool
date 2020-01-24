@@ -11,10 +11,22 @@ class Model {
 
   static number(val) {
     if (isUndefined(val)) {
-      return null;
+      return 0;
     }
 
     return Number(val);
+  }
+
+  static boolean(val) {
+    if (isUndefined(val)) {
+      return false;
+    }
+
+    if (val === 'false') {
+      return false;
+    }
+
+    return true;
   }
 }
 
