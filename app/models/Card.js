@@ -1,5 +1,19 @@
+const camel = require('lodash/camelCase');
+const merge = require('lodash/merge');
+const snake = require('lodash/snakeCase');
+
 const Model = require('.');
 
+/**
+ * incoming from api req
+ * const card = new Card(req.body)
+ *
+ * incoming from database
+ * const card = new Card(Card.fromDatabase(data))
+ *
+ * saving to database
+ * card.toDatabase()
+ */
 class Card extends Model {
   constructor(args) {
     super(args);
@@ -9,14 +23,14 @@ class Card extends Model {
       atkConsequence,
       attributes,
       author,
-      backgroundImageURL,
+      backgroundImageUrl,
       cost,
       createdAt,
       deckName,
-      deckURL,
+      deckUrl,
       def,
       description,
-      foregroundImageURL,
+      foregroundImageUrl,
       health,
       hitPoints,
       illustrator,
@@ -27,7 +41,7 @@ class Card extends Model {
       quote,
       resources,
       secondaryColor,
-      setIconURL,
+      setIconUrl,
       setName,
       setPosition,
       subtitle,
@@ -81,9 +95,9 @@ class Card extends Model {
     this.setColors();
 
     this.media = {
-      backgroundImageURL: Card.string(backgroundImageURL),
-      foregroundImageURL: Card.string(foregroundImageURL),
-      setIconURL: Card.string(setIconURL),
+      backgroundImageUrl: Card.string(backgroundImageUrl),
+      foregroundImageUrl: Card.string(foregroundImageUrl),
+      setIconUrl: Card.string(setIconUrl),
     };
 
     this.output = {
@@ -95,14 +109,24 @@ class Card extends Model {
     this.meta = {
       author: Card.string(author),
       illustrator: Card.string(illustrator),
-      deckURL: Card.string(deckURL),
+      deckUrl: Card.string(deckUrl),
       deckName: Card.string(deckName),
       official: Card.boolean(official),
       type: Card.string(type),
       views: Card.number(views),
-      createdAt: this.createdAt.string(createdAt),
-      updatedAt: this.updatedAt.string(updatedAt),
+      createdAt: Card.string(createdAt),
+      updatedAt: Card.string(updatedAt),
     };
+  }
+
+  static fromDatabase(args) {
+    const queryObj = {};
+
+    Object.keys(args).forEach((k) => {
+      queryObj[camel(k)] = args[k];
+    });
+
+    return queryObj;
   }
 
   shouldBelongToHero() {
@@ -147,6 +171,53 @@ class Card extends Model {
       this.colors.secondary = '#923130';
       this.colors.tertiary = '#923130';
     }
+  }
+
+  /**
+   * transformations from internal model -> database
+   */
+  toDatabase() {
+    const {
+      title,
+      attributes,
+      subtitle,
+      description,
+      notes,
+      quote,
+      setName,
+      setPosition,
+    } = this;
+    const databaseObj = {};
+    const nestedKeys = [this.colors, this.media, this.output, this.meta, this.stats];
+
+    const flatObj = merge({
+      title,
+      attributes,
+      subtitle,
+      description,
+      notes,
+      quote,
+      setName,
+      setPosition,
+    }, ...nestedKeys);
+
+    nestedKeys.forEach((k) => {
+      delete flatObj[k];
+    });
+
+    Object.keys(flatObj).forEach((k) => {
+      databaseObj[snake(k)] = flatObj[k];
+    });
+
+    // handle values that need to be transformed into query-like syntax
+    databaseObj.resources = databaseObj.resources.map((resource) => `${resource.type}=${resource.count}`).join(',');
+
+    // delete values that shouldn't be put in database, unless explicit
+    delete databaseObj.updated_at;
+    delete databaseObj.created_at;
+    delete databaseObj.views;
+
+    return databaseObj;
   }
 }
 

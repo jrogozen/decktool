@@ -36,7 +36,7 @@ exports.up = function (knex) {
     table.integer('thw_consequence');
     table.string('title').notNullable();
     table.string('type').notNullable();
-    table.bigInteger('views');
+    table.bigInteger('views').defaultTo(0);
   });
 };
 

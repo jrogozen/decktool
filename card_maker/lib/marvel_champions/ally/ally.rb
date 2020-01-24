@@ -1,4 +1,6 @@
 Squib::Deck.new(layout: File.absolute_path('ally.yml', __dir__)) do
+  puts Pango.version_string
+  
   png  layout: 'background_image', file: File.absolute_path('blackcat_background_image.png', __dir__)
   data = File.read(File.absolute_path('ally_inline.svg', __dir__))
     .gsub('${secondary_color}', '#000')
@@ -8,7 +10,7 @@ Squib::Deck.new(layout: File.absolute_path('ally.yml', __dir__)) do
 
   # puts doc
   svg layout: 'vector', data: data
-  text layout: 'title', str: 'black cat'.upcase
+  text layout: 'title', str: %q{<span>B</span><span size="x-small">LACK</span> <span>C</span><span size="x-small">AT</span>}
   text layout: 'subtitle', str: 'felicia hardy'.upcase
   text layout: 'cost_shadow', str: 3
   extents = text layout: 'cost', str: 3
