@@ -6,7 +6,8 @@ post "/marvel-champions/hero/ally" do
     secondary_color: @Params["secondary_color"],
     tertiary_color: @Params["tertiary_color"],
     resources: @Params["resources"],
-    background_image_url: @Params["background_image_url"]
+    background_image_url: @Params["background_image_url"],
+    set_icon_url: @Params["set_icon_url"]
   })
 
   ally.create_image()

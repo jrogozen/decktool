@@ -10,7 +10,7 @@ module MarvelChampions
       Squib::Deck.new(layout: File.absolute_path('ally.yml', __dir__)) do
         puts Pango.version_string
 
-        png  layout: 'background_image', file: File.absolute_path('blackcat_background_image.png', __dir__)
+        png  layout: 'background_image', file: this.background_image_url
 
         svg layout: 'vector_ally_header_background', data: this.sub_colors(File.read(File.absolute_path('ally_header_background.svg', __dir__)))
         svg layout: 'vector_ally_footer_background', data: this.sub_colors(File.read(File.absolute_path('ally_footer_background.svg', __dir__)))
@@ -46,7 +46,7 @@ module MarvelChampions
         text layout: 'quote', str: %q{"I'm not a hero. I'm a thief."}
         text layout: 'set', str: %q{<span>spider-man</span>  <span size="smaller">1/15</span>}, width: 280
 
-        png layout: 'splash_image', file: File.absolute_path('spiderman_splash_image.png', __dir__)
+        png layout: 'splash_image', file: this.set_icon_url
 
         b = StringIO.new
         self.cards[0].cairo_surface.write_to_png(b)
