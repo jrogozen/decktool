@@ -1,0 +1,25 @@
+<svg id="description" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 94 94">
+  <defs>
+    <radialGradient id="radial-gradient" cx="48.47" cy="47.9" r="42.86" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f19b20"/>
+      <stop offset="0.2" stop-color="#f09821"/>
+      <stop offset="0.36" stop-color="#eb8e25"/>
+      <stop offset="0.51" stop-color="#e47d2c"/>
+      <stop offset="0.65" stop-color="#da6535"/>
+      <stop offset="0.78" stop-color="#cd4741"/>
+      <stop offset="0.81" stop-color="#ca3f44"/>
+      <stop offset="0.91" stop-color="#c83e43"/>
+      <stop offset="0.95" stop-color="#c1393d"/>
+      <stop offset="0.97" stop-color="#b63034"/>
+      <stop offset="0.99" stop-color="#a52327"/>
+      <stop offset="1" stop-color="#9a1b1e"/>
+    </radialGradient>
+  </defs>
+  <title>ally_cost_background</title>
+  <g id="circle_fill" data-name="circle fill">
+    <circle cx="48.47" cy="48.3" r="44.5" style="fill: url(#radial-gradient)"/>
+  </g>
+  <g id="circle_line" data-name="circle line">
+    <circle cx="47" cy="47" r="44.5" style="fill: none;stroke: #231f20;stroke-miterlimit: 10;stroke-width: 5px"/>
+  </g>
+</svg>

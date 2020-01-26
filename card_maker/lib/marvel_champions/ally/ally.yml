@@ -5,6 +5,30 @@ background_image:
 vector:
   x: 0
   y: 0
+vector_ally_header_colors:
+  x: 131.5
+  y: 32
+vector_ally_header_background:
+  x: 0
+  y: 0
+vector_ally_header_text_background:
+  x: 141.15
+  y: 37.52
+vector_ally_footer_background:
+  x: 0
+  y: 704.49
+vector_ally_description_colors:
+  x: 41.12
+  y: 620
+vector_ally_description_text_background:
+  x: 53.74
+  y: 628.48
+vector_ally_cost_background:
+  x: 571
+  y: 575
+vector_ally_footer_splash:
+  x: 613
+  y: 912
 title:
   markup: true
   font: Exo 2, bold 9

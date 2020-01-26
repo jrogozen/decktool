@@ -2,15 +2,16 @@ source 'https://rubygems.org'
 
 ruby '2.6.3'
 
+gem 'httparty'
 gem 'thin'
-gem 'rack'
-gem 'rack-cors'
-
-gem 'grape'
-gem 'grape-entity'
 gem 'squib'
+gem 'sinatra'
+gem 'sinatra-contrib'
+gem 'sinatra-cross_origin'
+gem 'json'
 
 group :development do
   gem 'guard'
   gem 'guard-rake'
+  gem 'guard-shotgun'
 end

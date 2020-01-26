@@ -1,0 +1,13 @@
+<svg id="description" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 664.4 356.09">
+  <title>ally_description_colors</title>
+  <g>
+    <path d="M681.52,975.88H65.12a24.14,24.14,0,0,1-24-24.13V644.13a24.14,24.14,0,0,1,24-24.13h616.4a24.14,24.14,0,0,1,24,24.13V951.75A24.14,24.14,0,0,1,681.52,975.88Z" transform="translate(-41.12 -620)" style="fill: {secondary_color}"/>
+  </g>
+  <g>
+    <path d="M65.12,620a24.14,24.14,0,0,0-24,24.13V951.75a24.14,24.14,0,0,0,24,24.13H194l86-307.21L295,620Z" transform="translate(-41.12 -620)" style="fill: {primary_color}"/>
+  </g>
+  <g>
+    <polygon points="252.05 8.38 224.05 8.38 228.05 0 256.05 0 252.05 8.38" style="fill: {tertiary_color}"/>
+    <polygon points="161.03 356.09 133.03 356.09 137.03 347.71 165.03 347.71 161.03 356.09" style="fill: {tertiary_color}"/>
+  </g>
+</svg>

@@ -1,0 +1,16 @@
+<svg id="character_Heading" data-name="character Heading" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 564.85 81.1">
+  <defs>
+    <radialGradient id="radial-gradient" cx="423.58" cy="78.08" r="435.62" gradientTransform="translate(706 49.92) rotate(180) scale(1 0.12)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0.28" stop-color="#fcfcfd"/>
+      <stop offset="0.49" stop-color="#f3f2f9"/>
+      <stop offset="0.68" stop-color="#e3e2f1"/>
+      <stop offset="0.85" stop-color="#cdcbe5"/>
+      <stop offset="1" stop-color="#b4b1d8"/>
+    </radialGradient>
+  </defs>
+  <title>ally_header_background</title>
+  <g id="front">
+    <polygon points="23.94 0 564.85 0 543.51 80.07 0 81.11 23.94 0" style="fill: url(#radial-gradient)"/>
+  </g>
+</svg>

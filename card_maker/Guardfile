@@ -5,3 +5,10 @@ group :hero do
     watch %r{.*\.yml}
   end
 end
+
+group :server do
+  guard :shotgun, :server => 'thin' do
+    watch %r{lib/*}
+    watch %r{app/*}
+  end
+end

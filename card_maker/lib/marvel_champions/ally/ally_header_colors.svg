@@ -1,0 +1,12 @@
+<svg id="character_Heading" data-name="character Heading" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 583.17 90.74">
+  <title>ally_header_colors</title>
+  <g id="primary_color">
+    <polygon points="27 0 583.17 0 557.83 90.74 0 89.74 27 0" style="fill: {primary_color}"/>
+  </g>
+  <g id="secondary_color">
+    <polygon points="331.21 90.74 557.83 90.74 583.17 0 364.68 0 331.21 90.74" style="fill: {secondary_color}"/>
+  </g>
+  <g id="tertiary_color">
+    <polygon points="311.93 90.74 338.31 90.74 368.02 0 342.57 0 311.93 90.74" style="fill: {tertiary_color}"/>
+  </g>
+</svg>

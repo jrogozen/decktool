@@ -1,0 +1,9 @@
+<svg id="thunder" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97.65 82.99">
+  <title>resource_background</title>
+  <g id="yellow">
+    <path d="M-.65,960a6.64,6.64,0,0,1,.11,1.21v67.3l95,10V970Z" transform="translate(0.65 -958.27)" style="fill: #f1be48"/>
+  </g>
+  <g id="shape">
+    <polygon points="0.36 0 0.36 5.02 92.54 13.99 92.54 77.47 0.36 68.5 0.36 73.52 97.65 82.99 97.65 9.47 0.36 0" style="fill: #fff"/>
+  </g>
+</svg>

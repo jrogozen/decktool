@@ -1,0 +1,7 @@
+require "sinatra"
+require "sinatra/cross_origin"
+require "json"
+require "digest"
+require "squib"
+require "httparty"
+require "pp"
