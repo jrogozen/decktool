@@ -23,13 +23,12 @@ module MarvelChampions
     attr_reader :thw
     attr_reader :thw_consequence
     attr_reader :title
+    attr_reader :resource_svgs
     
     def initialize(args)
       @atk = args[:atk]
       @atk_consequence = args[:atk_consequence]
       @attributes = args[:attributes] || ''
-        .split(',')
-        .map { |word| "#{word}. "} 
       @background_image_url = get_image_from_url(args[:background_image_url])
       @cost = args[:cost]
       @def = args[:def]
@@ -47,13 +46,39 @@ module MarvelChampions
         end
       @secondary_color = args[:secondary_color]
       @set_icon_url = get_image_from_url(args[:set_icon_url])
-      @set_name = args[:set_name]
-      @set_position = args[:set_position]
-      @subtitle = args[:subtitle]
+      @set_name = args[:set_name] || ''
+      @set_position = args[:set_position] || ''
+      @subtitle = args[:subtitle] || ''
       @tertiary_color = args[:tertiary_color]
       @thw = args[:thw]
       @thw_consequence = args[:thw_consequence]
-      @title = args[:title]
+      @title = args[:title] || ''
+      @resource_svgs = {
+        background: Pathname.new(__FILE__).dirname.join('resources', 'resource_background.svg'),
+        energy: Pathname.new(__FILE__).dirname.join('resources', 'energy_background.svg')
+      }
+    end
+
+    def get_attributes_html
+      @attributes.split(',')
+        .map do |word|
+          "#{word}."
+        end
+        .join(' ')
+    end
+
+    def get_quote_html
+      %Q{"#{@quote}"}
+    end
+
+    def get_set_html
+      string = %Q{<span>#{@set_name.upcase}</span>}
+
+      if !@set_position.eql?('')
+        string += %Q{  <span>#{@set_position}</span>}
+      end
+
+      string
     end
 
     def get_image_from_url(url)
@@ -81,6 +106,15 @@ module MarvelChampions
       end
 
       filename
+    end
+
+    def get_title_html
+      title_array = @title.upcase.split(' ')
+      formatted_arr = title_array.map do |word|
+        %Q{<span>#{word[0]}</span><span size="x-small">#{word[1...word.length]}</span>}
+      end
+
+      formatted_arr.join(' ')
     end
 
     def cleanup_temp_images

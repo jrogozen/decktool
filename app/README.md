@@ -1,63 +1,7 @@
 ## decktool-api
 
-### models
+### todo
 
-#### deck
-
-#### card
-
-- title
-- attributes
-- subtitle
-- effect
-- quote
-- setName
-- setPosition
-
-meta
-- author
-- illustrator
-- deckName
-- deckURL
-- type
-- official
-
-stats
-- atk
-- atkConseqeuence
-- cost
-- thw
-- thwConsequence
-- def
-- health
-- resources
-- hitPoints
-
-
-colors
-- primaryColor
-- secondaryColor
-- tertiaryColor
-
-media
-- foregroundImageURL
-- backgroundImageURL
-- setIconURL
-- thumbnail[]
-- png[]
-- svg[]
-
-
-#### log
-
-### features
-
-#### card
-- [ ] create a card
-- [ ] edit a card
-- [ ] get a card
-
-#### deck
-
-#### log
-
+- [ ] syntax for adding svg/png resources in description
+- [ ] render resources for discarding based on params
+- [ ] investigate single color texture bottom left weirdness

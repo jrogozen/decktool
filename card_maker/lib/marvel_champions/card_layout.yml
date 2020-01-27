@@ -6,15 +6,59 @@ template_outline:
   x: 0
   y: 0
 title_font:
+  font: Exo 2, bold 
+title_font_base:
+  extends: title_font
   markup: true
-  font: Exo 2, bold 9
   color: black
   align: center
   valign: middle
 subtitle_font:
   font: Exo 2, 4
+subtitle_font_base:
+  extends: subtitle_font
   color: black
   align: center
   valign: middle
 large_number_font:
   font: Elektra Medium Pro, bold italic 24
+condensed_font:
+  font: BigNoodleTitling 8
+headers_base:
+  font: Exo 2, bold 9
+  color: white
+  align: center
+  width: 100
+  x: 35
+stat_value_font:
+  font: Avenir Next, italic heavy 18
+stat_value_base:
+  extends: stat_value_font
+  align: center
+  width: 100
+  x: 40
+stat_value:
+  extends: stat_value_base
+  stroke_color: black
+  stroke_width: 2
+  color: white
+stat_value_shadow:
+  extends: stat_value_base
+  color: black
+  x: -= 3
+large_number_base:
+  extends: large_number_font
+  align: center
+  width: 145
+large_number_shadow:
+  extends: large_number_base
+  color: black
+attributes_text:
+  font: Komika Title, 6
+  color: black
+description_text:
+  font: Avenir, book 7.7
+quote_text:
+  font: Komika Text, italic 6
+set_text:
+  font: BravoSC, 7
