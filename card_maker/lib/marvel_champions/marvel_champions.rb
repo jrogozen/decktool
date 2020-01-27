@@ -55,7 +55,7 @@ module MarvelChampions
       @title = args[:title] || ''
       @resource_svgs = {
         background: Pathname.new(__FILE__).dirname.join('resources', 'resource_background.svg'),
-        energy: Pathname.new(__FILE__).dirname.join('resources', 'energy_background.svg')
+        energy: Pathname.new(__FILE__).dirname.join('resources', 'resource_icon_energy.svg')
       }
     end
 
@@ -133,6 +133,10 @@ module MarvelChampions
         .gsub('{primary_color}', @primary_color)
         .gsub('{secondary_color}', @secondary_color)
         .gsub('{tertiary_color}', @tertiary_color)
+    end
+
+    def embed_block(embed)
+      embed.svg key: ':energy:', width: 22, height: 22, dx: 4, dy: 10, file: @resource_svgs[:energy]
     end
   end
 end

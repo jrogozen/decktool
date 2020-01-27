@@ -48,7 +48,9 @@ module MarvelChampions
         text layout: 'health_shadow', str: this.health
         text layout: 'health', str: this.health
         text layout: 'attributes', str: this.get_attributes_html()
-        text layout: 'description', str: this.description
+        text(layout: 'description', str: this.description) do |embed|
+          this.embed_block(embed)
+        end
         text layout: 'quote', str: this.get_quote_html()
         text layout: 'set', str: this.get_set_html()
         png layout: 'set_icon', file: this.set_icon_url
