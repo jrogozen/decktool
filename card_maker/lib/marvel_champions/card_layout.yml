@@ -1,0 +1,20 @@
+background_image:
+  x: 0
+  y: 22
+  crop_y: 44
+template_outline:
+  x: 0
+  y: 0
+title_font:
+  markup: true
+  font: Exo 2, bold 9
+  color: black
+  align: center
+  valign: middle
+subtitle_font:
+  font: Exo 2, 4
+  color: black
+  align: center
+  valign: middle
+large_number_font:
+  font: Elektra Medium Pro, bold italic 24

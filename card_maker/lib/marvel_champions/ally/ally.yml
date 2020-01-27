@@ -1,69 +1,55 @@
-background_image:
-  x: 0
-  y: 22
-  crop_y: 44
-vector:
-  x: 0
-  y: 0
-vector_ally_header_colors:
+template_ally_header_colors:
   x: 131.5
   y: 32
-vector_ally_header_background:
+template_ally_header_background:
   x: 0
   y: 0
-vector_ally_header_text_background:
+template_ally_header_text_background:
   x: 141.15
   y: 37.52
-vector_ally_footer_background:
+template_ally_footer_background:
   x: 0
   y: 704.49
-vector_ally_description_colors:
+template_ally_description_colors:
   x: 41.12
   y: 620
-vector_ally_description_text_background:
+template_ally_description_text_background:
   x: 53.74
   y: 628.48
-vector_ally_cost_background:
+template_ally_cost_background:
   x: 571
   y: 575
-vector_ally_footer_splash:
+template_ally_footer_splash:
   x: 613
   y: 912
 title:
-  markup: true
-  font: Exo 2, bold 9
-  color: black
+  extends: title_font
   x: 173
   y: 45
-  align: center
-  valign: middle
   height: 40
   width: 514
 subtitle:
-  font: Exo 2, 4
-  color: black
+  extends: subtitle_font
   x: 173
   y: 90
-  align: center
-  valign: middle
   height: 20
   width: 514
+cost_dimensions:
+  extends: large_number_font
+  align: center
+  x: 0
+  y: 30
+  width: 145
 cost:
-  font: Elektra Medium Pro, bold italic 24
+  extends: cost_dimensions
   color: white
   stroke_color: black
   stroke_width: 3
-  x: 0,
-  y: 30
-  align: center
-  width: 145
 cost_shadow:
-  font: Elektra Medium Pro, bold italic 24
+  extends: cost_dimensions
   color: black
-  x: -3,
-  y: 36,
-  align: center
-  width: 145
+  x: -= 3
+  y: += 6
 type:
   font: BigNoodleTitling 8
   color: white

@@ -5,23 +5,28 @@ module MarvelChampions
     def create_image
       this = self
 
+      layouts = [
+        File.expand_path(File.join(File.dirname(__FILE__), '..', 'card_layout.yml')),
+        File.absolute_path('ally.yml', __dir__),
+      ]
+
       puts self.resources.inspect
 
-      Squib::Deck.new(layout: File.absolute_path('ally.yml', __dir__)) do
+      Squib::Deck.new(layout: layouts) do
         puts Pango.version_string
 
         png  layout: 'background_image', file: this.background_image_url
 
-        svg layout: 'vector_ally_header_background', data: this.sub_colors(File.read(File.absolute_path('ally_header_background.svg', __dir__)))
-        svg layout: 'vector_ally_footer_background', data: this.sub_colors(File.read(File.absolute_path('ally_footer_background.svg', __dir__)))
+        svg layout: 'template_ally_header_background', data: this.sub_colors(File.read(File.absolute_path('ally_header_background.svg', __dir__)))
+        svg layout: 'template_ally_footer_background', data: this.sub_colors(File.read(File.absolute_path('ally_footer_background.svg', __dir__)))
 
-        svg layout: 'vector', data: File.read(File.absolute_path('ally_outline.svg', __dir__))
-        svg layout: 'vector_ally_header_colors', data: this.sub_colors(File.read(File.absolute_path('ally_header_colors.svg', __dir__)))
-        svg layout: 'vector_ally_description_colors', data: this.sub_colors(File.read(File.absolute_path('ally_description_colors.svg', __dir__)))
-        svg layout: 'vector_ally_header_text_background', data: File.read(File.absolute_path('ally_header_text_background.svg', __dir__))
-        svg layout: 'vector_ally_description_text_background', data: File.read(File.absolute_path('ally_description_text_background.svg', __dir__))
-        svg layout: 'vector_ally_cost_background', data: File.read(File.absolute_path('ally_cost_background.svg', __dir__))
-        svg layout: 'vector_ally_footer_splash', data: this.sub_colors(File.read(File.absolute_path('ally_footer_splash.svg', __dir__)))
+        svg layout: 'template_outline', data: File.read(File.absolute_path('ally_outline.svg', __dir__))
+        svg layout: 'template_ally_header_colors', data: this.sub_colors(File.read(File.absolute_path('ally_header_colors.svg', __dir__)))
+        svg layout: 'template_ally_description_colors', data: this.sub_colors(File.read(File.absolute_path('ally_description_colors.svg', __dir__)))
+        svg layout: 'template_ally_header_text_background', data: File.read(File.absolute_path('ally_header_text_background.svg', __dir__))
+        svg layout: 'template_ally_description_text_background', data: File.read(File.absolute_path('ally_description_text_background.svg', __dir__))
+        svg layout: 'template_ally_cost_background', data: File.read(File.absolute_path('ally_cost_background.svg', __dir__))
+        svg layout: 'template_ally_footer_splash', data: this.sub_colors(File.read(File.absolute_path('ally_footer_splash.svg', __dir__)))
 
         svg data: File.read(File.absolute_path('resource_background.svg', __dir__)), x: 2, y: 958.27
         
