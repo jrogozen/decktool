@@ -39,7 +39,7 @@ module MarvelChampions
       @illustrator = args[:illustrator]
       @primary_color = args[:primary_color]
       @quote = args[:quote]
-      @resources = (@resources || '').split(',')
+      @resources = (args[:resources] || '').split(',')
         .map do |r|
           resource = r.split('=')
           { type: resource[0], count: resource[1] }
@@ -55,8 +55,25 @@ module MarvelChampions
       @title = args[:title] || ''
       @resource_svgs = {
         background: Pathname.new(__FILE__).dirname.join('resources', 'resource_background.svg'),
-        energy: Pathname.new(__FILE__).dirname.join('resources', 'resource_icon_energy.svg')
+        energy: Pathname.new(__FILE__).dirname.join('resources', 'energy_icon.svg'),
+        wild: Pathname.new(__FILE__).dirname.join('resources', 'wild_icon.svg'),
+        mental: Pathname.new(__FILE__).dirname.join('resources', 'mental_icon.svg'),
+        strength: Pathname.new(__FILE__).dirname.join('resources', 'strength_icon.svg')
       }
+    end
+
+    def get_resources_html(deck, start_x, start_y)
+      puts @resources.inspect
+      current_x = start_x
+      current_y = start_y
+      background_height = 70
+      
+      @resources.each do |resource|
+        (0...resource[:count].to_i).each do |i|
+          deck.svg data: File.read(@resource_svgs[:background]), x: current_x, y: current_y
+          current_y -= background_height
+        end
+      end
     end
 
     def get_attributes_html
@@ -68,6 +85,8 @@ module MarvelChampions
     end
 
     def get_quote_html
+      return if @quote.nil? or @quote.eql? ''
+
       %Q{"#{@quote}"}
     end
 
@@ -135,8 +154,11 @@ module MarvelChampions
         .gsub('{tertiary_color}', @tertiary_color)
     end
 
-    def embed_block(embed)
+    def embed_svgs(embed)
       embed.svg key: ':energy:', width: 22, height: 22, dx: 4, dy: 10, file: @resource_svgs[:energy]
+      embed.svg key: ':wild:', width: 22, height: 22, dx: 4, dy: 10, file: @resource_svgs[:wild]
+      embed.svg key: ':mental:', width: 22, height: 22, dx: 4, dy: 10, file: @resource_svgs[:mental]
+      embed.svg key: ':strength:', width: 22, height: 22, dx: 4, dy: 10, file: @resource_svgs[:strength]
     end
   end
 end

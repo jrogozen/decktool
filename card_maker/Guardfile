@@ -1,5 +1,5 @@
-group :hero do
-  guard 'rake', task: :hero do
+group :card do
+  guard 'rake', task: :marvel_champions do
     watch %r{lib/marvel_champions/*}
     watch %r{img/.*}
     watch %r{.*\.yml}

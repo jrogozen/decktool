@@ -18,5 +18,6 @@ post "/marvel-champions/hero/ally" do
     cost: @Params["cost"]
   })
 
+
   ally.create_image()
 end

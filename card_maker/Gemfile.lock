@@ -79,6 +79,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rb-readline (0.5.5)
     roo (2.8.2)
       nokogiri (~> 1)
       rubyzip (>= 1.2.1, < 2.0.0)
@@ -132,6 +133,8 @@ DEPENDENCIES
   guard-shotgun
   httparty
   json
+  pry
+  rb-readline
   sinatra
   sinatra-contrib
   sinatra-cross_origin
@@ -139,7 +142,7 @@ DEPENDENCIES
   thin
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 2.7.0p0
 
 BUNDLED WITH
    2.1.4

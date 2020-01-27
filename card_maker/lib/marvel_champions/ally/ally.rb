@@ -14,7 +14,7 @@ module MarvelChampions
       Squib::Deck.new(layout: position_layouts) do
         puts Pango.version_string
 
-        png  layout: 'background_image', file: this.background_image_url
+        png layout: 'background_image', file: this.background_image_url
 
         svg layout: 'template_ally_header_background', data: this.sub_colors(File.read(File.absolute_path('svg/ally_header_background.svg', __dir__)))
         svg layout: 'template_ally_footer_background', data: this.sub_colors(File.read(File.absolute_path('svg/ally_footer_background.svg', __dir__)))
@@ -28,9 +28,8 @@ module MarvelChampions
         if (this.set_icon_url)
           svg layout: 'template_ally_footer_splash', data: this.sub_colors(File.read(File.absolute_path('svg/ally_footer_splash.svg', __dir__)))
         end
-
-        # todo
-        svg data: File.read(this.resource_svgs[:background]), x: 2, y: 958.27
+        
+        this.get_resources_html(self, 2, 958.27)
         
         svg data: File.read(File.absolute_path('svg/ally_border.svg',  __dir__)), x: 0, y: 0
 
@@ -49,7 +48,7 @@ module MarvelChampions
         text layout: 'health', str: this.health
         text layout: 'attributes', str: this.get_attributes_html()
         text(layout: 'description', str: this.description) do |embed|
-          this.embed_block(embed)
+          this.embed_svgs(embed)
         end
         text layout: 'quote', str: this.get_quote_html()
         text layout: 'set', str: this.get_set_html()

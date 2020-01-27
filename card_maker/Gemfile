@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.6.3'
+ruby '2.7.0'
 
 gem 'httparty'
 gem 'thin'
@@ -11,6 +11,8 @@ gem 'sinatra-cross_origin'
 gem 'json'
 
 group :development do
+  gem 'pry'
+  gem 'rb-readline'
   gem 'guard'
   gem 'guard-rake'
   gem 'guard-shotgun'
