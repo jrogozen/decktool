@@ -15,7 +15,11 @@ post "/marvel-champions/hero/ally" do
     quote: @Params["quote"],
     set_name: @Params["set_name"],
     set_position: @Params["set_position"],
-    cost: @Params["cost"]
+    cost: @Params["cost"],
+    atk: @Params["atk"],
+    atk_consequence: @Params["atk_consequence"],
+    thw: @Params["thw"],
+    thw_consequence: @Params["thw_consequence"]
   })
 
 

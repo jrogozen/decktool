@@ -62,3 +62,6 @@ quote_text:
   font: Komika Text, italic 6
 set_text:
   font: BravoSC, 7
+resource_icon:
+  width: 30
+  height: 30

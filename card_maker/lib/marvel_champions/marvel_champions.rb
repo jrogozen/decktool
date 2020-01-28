@@ -27,7 +27,7 @@ module MarvelChampions
     
     def initialize(args)
       @atk = args[:atk]
-      @atk_consequence = args[:atk_consequence]
+      @atk_consequence = args[:atk_consequence] ? args[:atk_consequence].to_i : 0
       @attributes = args[:attributes] || ''
       @background_image_url = get_image_from_url(args[:background_image_url])
       @cost = args[:cost]
@@ -51,10 +51,11 @@ module MarvelChampions
       @subtitle = args[:subtitle] || ''
       @tertiary_color = args[:tertiary_color]
       @thw = args[:thw]
-      @thw_consequence = args[:thw_consequence]
+      @thw_consequence = args[:thw_consequence] ? args[:thw_consequence].to_i : 0
       @title = args[:title] || ''
       @resource_svgs = {
         background: Pathname.new(__FILE__).dirname.join('resources', 'resource_background.svg'),
+        consequence: Pathname.new(__FILE__).dirname.join('resources', 'consequence_icon.svg'),
         energy: Pathname.new(__FILE__).dirname.join('resources', 'energy_icon.svg'),
         wild: Pathname.new(__FILE__).dirname.join('resources', 'wild_icon.svg'),
         mental: Pathname.new(__FILE__).dirname.join('resources', 'mental_icon.svg'),
@@ -63,16 +64,28 @@ module MarvelChampions
     end
 
     def get_resources_html(deck, start_x, start_y)
-      puts @resources.inspect
       current_x = start_x
       current_y = start_y
       background_height = 70
       
       @resources.each do |resource|
-        (0...resource[:count].to_i).each do |i|
+        (0...resource[:count].to_i).each do
+          icon_data = sub_fill_color(File.read(@resource_svgs[resource[:type].to_sym]), 'rgba(0,0,0,0.30)')
+
           deck.svg data: File.read(@resource_svgs[:background]), x: current_x, y: current_y
+          deck.svg data: icon_data, layout: 'resource_icon', x: current_x + 50, y: current_y + 28
           current_y -= background_height
         end
+      end
+    end
+
+    def get_consequence_html(deck, count, start_x, start_y)
+      current_x = start_x
+      current_y = start_y
+
+      (0...count.to_i).each do
+        deck.svg data: sub_fill_color(File.read(@resource_svgs[:consequence]), '#ff0000'), x: current_x, y: current_y
+        current_x += 50
       end
     end
 
@@ -152,6 +165,10 @@ module MarvelChampions
         .gsub('{primary_color}', @primary_color)
         .gsub('{secondary_color}', @secondary_color)
         .gsub('{tertiary_color}', @tertiary_color)
+    end
+
+    def sub_fill_color(str, color)
+      str.gsub('{fill_color}', color)
     end
 
     def embed_svgs(embed)
