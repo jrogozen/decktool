@@ -42,12 +42,12 @@ module MarvelChampions
         text layout: 'thw', str: 'thw'.upcase
         text layout: 'thw_value_shadow', str: this.thw
         text layout: 'thw_value', str: this.thw
-        this.get_consequence_html(self, this.thw_consequence, 40, 240)
+        this.get_consequence_html(self, this.thw_consequence, 27, 141, 340)
 
         text layout: 'atk', str: 'atk'.upcase
         text layout: 'atk_value_shadow', str: this.atk
         text layout: 'atk_value', str: this.atk
-        this.get_consequence_html(self, this.atk_consequence, 40, 525)
+        this.get_consequence_html(self, this.atk_consequence, 27, 141, 555)
         
         text layout: 'health_shadow', str: this.health
         text layout: 'health', str: this.health

@@ -25,7 +25,7 @@ large_number_font:
 condensed_font:
   font: BigNoodleTitling 8
 headers_base:
-  font: Exo 2, bold 9
+  font: Exo 2, bold 8
   color: white
   align: center
   width: 100

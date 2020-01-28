@@ -79,13 +79,18 @@ module MarvelChampions
       end
     end
 
-    def get_consequence_html(deck, count, start_x, start_y)
-      current_x = start_x
+    def get_consequence_html(deck, count, start_x, end_x, start_y)
+      width = end_x - start_x
+      mid_point = width / 2
+      icon_width = 35
+      icon_mid_point = (icon_width * count) / 2
+
+      current_x = start_x + (mid_point - icon_mid_point)
       current_y = start_y
 
       (0...count.to_i).each do
-        deck.svg data: sub_fill_color(File.read(@resource_svgs[:consequence]), '#ff0000'), x: current_x, y: current_y
-        current_x += 50
+        deck.svg data: File.read(@resource_svgs[:consequence]), x: current_x, y: current_y
+        current_x += icon_width
       end
     end
 
