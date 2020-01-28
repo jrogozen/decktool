@@ -61,6 +61,12 @@ module MarvelChampions
         mental: Pathname.new(__FILE__).dirname.join('resources', 'mental_icon.svg'),
         strength: Pathname.new(__FILE__).dirname.join('resources', 'strength_icon.svg')
       }
+      @resource_background_colors = {
+        energy: '#f1be48',
+        wild: '#298a43',
+        strength: '#782017',
+        mental: '#4a68ae'
+      }
     end
 
     def get_resources_html(deck, start_x, start_y)
@@ -72,7 +78,7 @@ module MarvelChampions
         (0...resource[:count].to_i).each do
           icon_data = sub_fill_color(File.read(@resource_svgs[resource[:type].to_sym]), 'rgba(0,0,0,0.30)')
 
-          deck.svg data: File.read(@resource_svgs[:background]), x: current_x, y: current_y
+          deck.svg data: sub_fill_color(File.read(@resource_svgs[:background]), @resource_background_colors[resource[:type].to_sym]), x: current_x, y: current_y
           deck.svg data: icon_data, layout: 'resource_icon', x: current_x + 50, y: current_y + 28
           current_y -= background_height
         end
