@@ -22,6 +22,5 @@ post "/marvel-champions/hero/ally" do
     thw_consequence: @Params["thw_consequence"]
   })
 
-
   ally.create_image()
 end

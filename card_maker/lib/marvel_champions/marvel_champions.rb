@@ -183,10 +183,10 @@ module MarvelChampions
     end
 
     def embed_svgs(embed)
-      embed.svg key: ':energy:', width: 22, height: 22, dx: 4, dy: 10, file: @resource_svgs[:energy]
-      embed.svg key: ':wild:', width: 22, height: 22, dx: 4, dy: 10, file: @resource_svgs[:wild]
-      embed.svg key: ':mental:', width: 22, height: 22, dx: 4, dy: 10, file: @resource_svgs[:mental]
-      embed.svg key: ':strength:', width: 22, height: 22, dx: 4, dy: 10, file: @resource_svgs[:strength]
+      embed.svg key: ':energy:', width: 22, height: 22, dx: 4, dy: 5, file: @resource_svgs[:energy]
+      embed.svg key: ':wild:', width: 22, height: 22, dx: 4, dy: 5, file: @resource_svgs[:wild]
+      embed.svg key: ':mental:', width: 22, height: 22, dx: 4, dy: 5, file: @resource_svgs[:mental]
+      embed.svg key: ':strength:', width: 22, height: 22, dx: 4, dy: 5, file: @resource_svgs[:strength]
     end
   end
 end

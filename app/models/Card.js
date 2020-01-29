@@ -174,6 +174,39 @@ class Card extends Model {
   }
 
   /**
+   * transformations from internal model -> card_maker service
+   */
+  toService() {
+    const {
+      title,
+      subtitle,
+      colors,
+      description,
+    } = this;
+
+    return {
+      atk: this.stats.atk,
+      atk_consequence: this.stats.atkConsequence,
+      attributes: this.attributes.join(','),
+      background_image_url: this.media.backgroundImageUrl,
+      cost: this.stats.cost,
+      description,
+      primary_color: colors.primaryColor,
+      quote: this.quote,
+      resources: this.stats.resources.map((resource) => `${resource.type}=${resource.count}`).join(','),
+      secondary_color: colors.secondaryColor,
+      set_icon_url: this.media.setIconUrl,
+      set_name: this.setName,
+      set_position: this.setPosition,
+      subtitle,
+      tertiary_color: colors.tertiaryColor,
+      thw: this.stats.thw,
+      thw_consequence: this.stats.thwConsequence,
+      title,
+    };
+  }
+
+  /**
    * transformations from internal model -> database
    */
   toDatabase() {
