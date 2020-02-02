@@ -1,6 +1,6 @@
 ## decktool
 
-### getting started
+### getting started (all the following from the root directory of the project)
 
 #### install dependencies
 
@@ -9,9 +9,8 @@
 3. `n 10.16.3`
 
 #### run the card_maker service
-
 1. `docker build -t decktool_card_maker ./card_maker`
-    - this will output a docker `<image id>`
+    - this will output a docker `<image id>`(eg. `Successfully built **********`)
 2. `docker run -p 9292:9292 -e PORT=9292 <image id>`
 3. check `http://localhost:9292` is running
 
@@ -24,7 +23,7 @@
 2. `npm i`
 3. `mkdir tools/env`
 4. `touch tools/env/local.env`
-5. add some default settings to the env file
+5. `add some default settings to the env file:`
     ```
     LOG_LEVEL=trace
     LOG_PRETTY=false
@@ -32,7 +31,8 @@
     DECKTOOL_SERVICE_API=http://localhost:9292
     ```
 6. `npm run dev`
-7. `curl -XPOST -H "Content-type: application/json" -d '{"type": "MARVEL_CHAMPIONS:ALLY" }' 'http://localhost:3000/api/v1/marvel-champions/card'`
+7. `curl -XPOST -H "Content-type: application/json" -d '{"type": "MARVEL_CHAMPIONS:ALLY" }' 'http://localhost:3000/api/v1/marvel-champions/cards' -o image.png`
+8. `check to make a that a png image was created`
 
 ### set up elm
 
