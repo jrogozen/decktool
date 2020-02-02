@@ -32,3 +32,9 @@
     DECKTOOL_SERVICE_API=http://localhost:9292
     ```
 6. `npm run dev`
+7. `curl -XPOST -H "Content-type: application/json" -d '{"type": "MARVEL_CHAMPIONS:ALLY" }' 'http://localhost:3000/api/v1/marvel-champions/card'`
+
+### set up elm
+
+1. `npm i -g elm elm-analyse elm-format elm-test elm-live`
+2. install `elm` extension for vscode (elm tooling)
