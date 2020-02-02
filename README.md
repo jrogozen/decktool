@@ -13,9 +13,9 @@
 1. `docker build -t decktool_card_maker ./card_maker`
     - this will output a docker `<image id>`
 2. `docker run -p 9292:9292 -e PORT=9292 <image id>`
-3. `check `http://localhost:9292` is running
+3. check `http://localhost:9292` is running
 
-> when the docker daemon is running
+> when the docker daemon is running you can run `docker ps` to see things
 
 
 #### set up the api
