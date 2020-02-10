@@ -1,9 +1,10 @@
-const { parallel, watch } = require('gulp');
-const gutil = require('gulp-util');
+const log = require('fancy-log');
+const c = require('ansi-colors');
 const http = require('http');
 const st = require('st');
-const { exec } = require('child_process');
 const clear = require('clear');
+const { parallel, watch } = require('gulp');
+const { exec } = require('child_process');
 
 let counter = 0;
 
@@ -16,9 +17,13 @@ function elm(cb) {
 
   exec(cmd, (err, stdout, stderr) => {
     if (err) {
-      gutil.log(gutil.colors.red('elm make: '), gutil.colors.red(stderr));
+      log.error(c.red('elm make: '));
+
+      console.log(c.red(stderr));
     } else {
-      gutil.log(gutil.colors.green('elm make: '), gutil.colors.green(stdout));
+      log(c.green('elm make: '));
+
+      console.log(c.green(stdout));
     }
 
     cb();
@@ -28,7 +33,7 @@ function elm(cb) {
 }
 
 function server(cb) {
-  gutil.log(gutil.colors.green('starting server at http://localhost:4000'));
+  log.info(c.green('starting server at http://localhost:4000'));
   http.createServer(
     st({
       path: __dirname,
