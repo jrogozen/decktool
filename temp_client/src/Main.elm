@@ -1,6 +1,7 @@
 module Main exposing (..)
 
 import Browser
+import Dict exposing (Dict)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -38,7 +39,9 @@ type alias Model =
     , author : String
     , illustrator : String
     , notes : String
-    , type_ : String
+
+    -- TODO: change this to keyed by string for easier lookup
+    , cardType : Dict Int ( String, Bool )
     , attributes : String
     , description : String
     , quote : String
@@ -55,8 +58,8 @@ modelInitialValue =
     , atkConsequence = Just 0
     , cost = Just 2
     , def = Nothing
-    , health = Nothing
-    , hitPoints = Just 2
+    , health = Just 2
+    , hitPoints = Nothing
     , thw = Just 1
     , thwConsequence = Just 1
     , resources = Just [ CardResource "energy" 1 ]
@@ -66,9 +69,9 @@ modelInitialValue =
     , author = "decktool"
     , illustrator = ""
     , notes = ""
-    , type_ = "MARVEL_CHAMPIONS:ALLY"
+    , cardType = Dict.fromList [ ( 0, ( "Ally", True ) ), ( 1, ( "Hero", False ) ) ]
     , attributes = "hero for hire"
-    , description = "<b>Forced Response</b>: After you play Black Cat, discard the top 2 cards of your deck. Add Each card with a printed :mental: resource discarded this way to your hand."
+    , description = "<b>Forced Response</b>: After you play Black Cat, discard the top 2 cards of your deck. Add each card with a printed :mental: resource discarded this way to your hand."
     , quote = "I'm not a hero. I'm a thief."
     , setName = "spider-man"
     , setPosition = "1/15"
@@ -116,6 +119,51 @@ updateAtk atkString model =
     { model | atk = String.toInt atkString }
 
 
+updateAtkConsequence : String -> Model -> Model
+updateAtkConsequence str model =
+    { model | atkConsequence = String.toInt str }
+
+
+updateCost : String -> Model -> Model
+updateCost str model =
+    { model | cost = String.toInt str }
+
+
+updateThw : String -> Model -> Model
+updateThw str model =
+    { model | thw = String.toInt str }
+
+
+updateThwConsequence : String -> Model -> Model
+updateThwConsequence str model =
+    { model | thwConsequence = String.toInt str }
+
+
+updateHealth : String -> Model -> Model
+updateHealth str model =
+    { model | health = String.toInt str }
+
+
+updateSelect : String -> Model -> Model
+updateSelect str model =
+    case String.toInt str of
+        Just selectedId ->
+            let
+                changeSelection id ( label, _ ) =
+                    if id == selectedId then
+                        ( label, True )
+
+                    else
+                        ( label, False )
+            in
+            { model
+                | cardType = Dict.map changeSelection model.cardType
+            }
+
+        Nothing ->
+            model
+
+
 type Msg
     = EditTitle String
     | EditSubtitle String
@@ -123,6 +171,12 @@ type Msg
     | EditDescription String
     | EditQuote String
     | EditAtk String
+    | EditAtkConsequence String
+    | EditCost String
+    | EditThw String
+    | EditThwConsequence String
+    | EditHealth String
+    | Select String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -146,6 +200,24 @@ update msg model =
         EditAtk atkString ->
             ( updateAtk atkString model, Cmd.none )
 
+        EditAtkConsequence str ->
+            ( updateAtkConsequence str model, Cmd.none )
+
+        EditCost str ->
+            ( updateCost str model, Cmd.none )
+
+        EditThw str ->
+            ( updateThw str model, Cmd.none )
+
+        EditThwConsequence str ->
+            ( updateThwConsequence str model, Cmd.none )
+
+        EditHealth str ->
+            ( updateHealth str model, Cmd.none )
+
+        Select str ->
+            ( updateSelect str model, Cmd.none )
+
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
@@ -162,16 +234,35 @@ view model =
     , body =
         [ div [ class "decktool" ]
             [ h1 [] [ text "decktool app" ]
+            , div [] [ editCardType model ]
             , Html.form [ class "card-creator-form" ]
-                [ div []
+                [ div [ class "card-creator-text" ]
                     (editCardText model)
-                , div []
+                , div [ class "card-creator-stats" ]
                     (editCardStats model)
                 ]
             , p [] [ text (Debug.toString model) ]
             ]
         ]
     }
+
+
+
+-- viewCardEditorByType : Model -> Html Msg
+-- viewCardEditorByType model =
+
+
+editCardType : Model -> Html Msg
+editCardType model =
+    let
+        toOption ( id, ( label, isSelected ) ) =
+            option
+                [ value (String.fromInt id)
+                , selected isSelected
+                ]
+                [ text label ]
+    in
+    select [ onInput Select ] (List.map toOption <| Dict.toList model.cardType)
 
 
 editCardText : Model -> List (Html Msg)
@@ -194,9 +285,8 @@ editCardText model =
         , value model.attributes
         ]
         []
-    , input
-        [ type_ "text"
-        , onInput EditDescription
+    , textarea
+        [ onInput EditDescription
         , value model.description
         ]
         []
@@ -209,8 +299,8 @@ editCardText model =
     ]
 
 
-getIntAsString : Maybe Int -> String
-getIntAsString int =
+maybeIntToString : Maybe Int -> String
+maybeIntToString int =
     case int of
         Nothing ->
             ""
@@ -225,7 +315,42 @@ editCardStats model =
         [ type_ "number"
         , onInput EditAtk
         , placeholder "atk"
-        , value (getIntAsString model.atk)
+        , value (maybeIntToString model.atk)
+        ]
+        []
+    , input
+        [ type_ "number"
+        , onInput EditAtkConsequence
+        , placeholder "atkConsequence"
+        , value (maybeIntToString model.atkConsequence)
+        ]
+        []
+    , input
+        [ type_ "number"
+        , onInput EditCost
+        , placeholder "cost"
+        , value (maybeIntToString model.cost)
+        ]
+        []
+    , input
+        [ type_ "number"
+        , onInput EditThw
+        , placeholder "thw"
+        , value (maybeIntToString model.thw)
+        ]
+        []
+    , input
+        [ type_ "number"
+        , onInput EditThwConsequence
+        , placeholder "thwConsequence"
+        , value (maybeIntToString model.thwConsequence)
+        ]
+        []
+    , input
+        [ type_ "number"
+        , onInput EditHealth
+        , placeholder "health"
+        , value (maybeIntToString model.health)
         ]
         []
     ]
