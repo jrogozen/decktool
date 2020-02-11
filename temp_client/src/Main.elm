@@ -2,6 +2,7 @@ module Main exposing (..)
 
 import Browser
 import Dict exposing (Dict)
+import Dict.Extra as Dict
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -145,12 +146,8 @@ updateHealth str model =
 updateSelect : String -> Model -> Model
 updateSelect str model =
     let
-        changeSelection ( key, _ ) =
-            if key == str then
-                True
-
-            else
-                False
+        changeSelection key _ =
+            key == str
     in
     { model
         | cardType = Dict.map changeSelection model.cardType
@@ -229,20 +226,38 @@ view model =
             [ h1 [] [ text "decktool app" ]
             , div [] [ editCardType model ]
             , Html.form [ class "card-creator-form" ]
-                [ div [ class "card-creator-text" ]
-                    (editCardText model)
-                , div [ class "card-creator-stats" ]
-                    (editCardStats model)
-                ]
+                [ viewCardEditorByType model ]
             , p [] [ text (Debug.toString model) ]
             ]
         ]
     }
 
 
+viewCardEditorByType : Model -> Html Msg
+viewCardEditorByType model =
+    let
+        activeCardType =
+            case Dict.find (\_ bool -> bool == True) model.cardType of
+                Just cardType ->
+                    Tuple.first cardType
 
--- viewCardEditorByType : Model -> Html Msg
--- viewCardEditorByType model =
+                Nothing ->
+                    "none"
+
+        composedHtml =
+            case activeCardType of
+                "Ally" ->
+                    [ div [ class "card-creator-text" ]
+                        (editAllyCardText model)
+                    , div [ class "card-creator-stats" ]
+                        (editAllyCardStats model)
+                    ]
+
+                cardType ->
+                    [ div [] [ text (cardType ++ " not yet implemented") ] ]
+    in
+    Html.form [ class "card-creator-form" ]
+        composedHtml
 
 
 editCardType : Model -> Html Msg
@@ -258,8 +273,8 @@ editCardType model =
     select [ onInput Select ] (List.map toOption <| Dict.toList model.cardType)
 
 
-editCardText : Model -> List (Html Msg)
-editCardText model =
+editAllyCardText : Model -> List (Html Msg)
+editAllyCardText model =
     [ input
         [ type_ "text"
         , onInput EditTitle
@@ -302,8 +317,8 @@ maybeIntToString int =
             String.fromInt i
 
 
-editCardStats : Model -> List (Html Msg)
-editCardStats model =
+editAllyCardStats : Model -> List (Html Msg)
+editAllyCardStats model =
     [ input
         [ type_ "number"
         , onInput EditAtk
