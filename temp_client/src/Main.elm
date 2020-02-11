@@ -39,9 +39,7 @@ type alias Model =
     , author : String
     , illustrator : String
     , notes : String
-
-    -- TODO: change this to keyed by string for easier lookup
-    , cardType : Dict Int ( String, Bool )
+    , cardType : Dict String Bool
     , attributes : String
     , description : String
     , quote : String
@@ -69,7 +67,7 @@ modelInitialValue =
     , author = "decktool"
     , illustrator = ""
     , notes = ""
-    , cardType = Dict.fromList [ ( 0, ( "Ally", True ) ), ( 1, ( "Hero", False ) ) ]
+    , cardType = Dict.fromList [ ( "Ally", True ), ( "Hero", False ) ]
     , attributes = "hero for hire"
     , description = "<b>Forced Response</b>: After you play Black Cat, discard the top 2 cards of your deck. Add each card with a printed :mental: resource discarded this way to your hand."
     , quote = "I'm not a hero. I'm a thief."
@@ -146,22 +144,17 @@ updateHealth str model =
 
 updateSelect : String -> Model -> Model
 updateSelect str model =
-    case String.toInt str of
-        Just selectedId ->
-            let
-                changeSelection id ( label, _ ) =
-                    if id == selectedId then
-                        ( label, True )
+    let
+        changeSelection ( key, _ ) =
+            if key == str then
+                True
 
-                    else
-                        ( label, False )
-            in
-            { model
-                | cardType = Dict.map changeSelection model.cardType
-            }
-
-        Nothing ->
-            model
+            else
+                False
+    in
+    { model
+        | cardType = Dict.map changeSelection model.cardType
+    }
 
 
 type Msg
@@ -255,12 +248,12 @@ view model =
 editCardType : Model -> Html Msg
 editCardType model =
     let
-        toOption ( id, ( label, isSelected ) ) =
+        toOption ( cardType, isSelected ) =
             option
-                [ value (String.fromInt id)
+                [ value cardType
                 , selected isSelected
                 ]
-                [ text label ]
+                [ text cardType ]
     in
     select [ onInput Select ] (List.map toOption <| Dict.toList model.cardType)
 
