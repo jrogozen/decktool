@@ -221,7 +221,7 @@ view model =
         [ div [ class "decktool" ]
             [ h1 [] [ text "decktool app" ]
             , div [] [ editCardType model ]
-            , Html.form [ class "card-creator-form" ]
+            , div [ class "card-creator-form" ]
                 [ viewCardEditorByType model ]
             , p [] [ text (Debug.toString model) ]
             ]
@@ -254,7 +254,13 @@ viewCardEditorByType model =
                     [ div [] [ text (cardType ++ " not yet implemented") ] ]
     in
     Html.form [ class "card-creator-form" ]
-        composedHtml
+        [ div []
+            [ div []
+                composedHtml
+            , div []
+                [ editCardColors model ]
+            ]
+        ]
 
 
 editCardType : Model -> Html Msg
@@ -283,12 +289,9 @@ editCardColors model =
                     ]
                     []
                 ]
-
-        htmlGroup =
-            List.map toInput (Dict.toList model.colors)
     in
-    div []
-        htmlGroup
+    div [ class "card-creator-colors" ]
+        (Dict.toList model.colors |> List.map toInput)
 
 
 editAllyCardText : Model -> List (Html Msg)
