@@ -34,9 +34,7 @@ type alias Model =
     , thw : Maybe Int
     , thwConsequence : Maybe Int
     , resources : Maybe (List CardResource)
-    , primary : String
-    , secondary : String
-    , tertiary : String
+    , colors : Dict String String
     , author : String
     , illustrator : String
     , notes : String
@@ -62,9 +60,7 @@ modelInitialValue =
     , thw = Just 1
     , thwConsequence = Just 1
     , resources = Just [ CardResource "energy" 1 ]
-    , primary = "black"
-    , secondary = "gold"
-    , tertiary = "yellow"
+    , colors = Dict.fromList [ ( "primary", "red" ), ( "secondary", "blue" ), ( "tertiary", "yellow" ) ]
     , author = "decktool"
     , illustrator = ""
     , notes = ""
@@ -251,6 +247,7 @@ viewCardEditorByType model =
                         (editAllyCardText model)
                     , div [ class "card-creator-stats" ]
                         (editAllyCardStats model)
+                    , editCardColors model
                     ]
 
                 cardType ->
@@ -271,6 +268,27 @@ editCardType model =
                 [ text cardType ]
     in
     select [ onInput Select ] (List.map toOption <| Dict.toList model.cardType)
+
+
+editCardColors : Model -> Html Msg
+editCardColors model =
+    let
+        toInput ( sig, color ) =
+            label
+                []
+                [ text sig
+                , input
+                    [ type_ "text"
+                    , value color
+                    ]
+                    []
+                ]
+
+        htmlGroup =
+            List.map toInput (Dict.toList model.colors)
+    in
+    div []
+        htmlGroup
 
 
 editAllyCardText : Model -> List (Html Msg)
